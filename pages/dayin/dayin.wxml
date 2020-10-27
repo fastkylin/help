@@ -9,11 +9,14 @@
       </view>
     </view>
     <form bindsubmit="formSubmit" report-submit="true">
+    <!--
       <view class=' pa-b20  panel-between item-center border-b' bindtap='chooseFile'>
         <view class='fo-30'>添加打印原件</view>
         <view class='day' wx:if="{{!file}}">+</view>
         <view wx:if="{{file}}" class='ell fo-28 text-right' style='width:300rpx'>{{file.filename}}</view>
       </view>
+      
+      -->
       <!-- <view class='pa-t30 pa-b20 panel-between item-center border-b'>
         <view class='fo-30'>原件号码</view>
         <input class='fo-30 text-right' name="no" style='width:450rpx' placeholder='(原件上传后会生成原件号码)'></input>
@@ -26,23 +29,25 @@
         </view>
       </view>
       <view class='pa-t30 pa-b20 panel-between item-center border-b'>
-        <view class='fo-30'>页数</view>
-        <input class='fo-30 text-right' bindinput='pageInput' name="page" type='number' placeholder='输入页数'></input>
+        <view class='fo-30'>收货姓名</view>
+        <input class='fo-30 text-right' bindinput='nameInput' name="name" type='number' placeholder='收货姓名'></input>
+      </view>
+      <view class='pa-t30 pa-b20 panel-between item-center border-b'>
+        <view class='fo-30'>联系电话</view>
+        <input class='fo-30 text-right' bindinput='phoneInput' name="phone" type='number' placeholder='收货联系电话'></input>
       </view>
       <view class='pa-t30 pa-b20 panel-between item-center border-b'>
         <view class='fo-30'>备注</view>
         <input class='fo-30 text-right' name="des" placeholder='备注信息'></input>
       </view>
+      <!--
       <view class='pa-t30 pa-b20 panel-between item-center border-b'>
         <view class='fo-30'>印刷</view>
         <view class='fo-30 fo-g'>暂仅支持黑白印刷</view>
-        <!-- <switch color="#0099ff" bindchange="switch1Change" /> -->
+      <switch color="#0099ff" bindchange="switch1Change" /> 
       </view>
-      <view class='text-center fo-26 fo-g ma-t30'>黑白
-        <!-- <text class='fo-m'>{{price[0]}}元/张</text> 彩印 -->
-        <text class='fo-m'>{{price[1]}}元/张</text> 跑路费
-        <text class='fo-m'>{{price[2]}}元</text>
-      </view>
+-->
+
       <view class='fo-26 fo-g text-center'>{{msg.des}}</view>
       <view class='fo-26 text-center ma-t30'>需支付</view>
       <view class='text-center fo-40 bold ma-t20 fo-m'>{{total_fee}}

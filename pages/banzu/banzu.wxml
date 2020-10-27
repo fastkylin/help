@@ -15,8 +15,8 @@
     <view class='fo-26 fo-g'>本月收益</view>
   </view>
 </view>
-
 <view class="pa-30" >
+
   <view class='titem' wx:for="{{list}}" wx:if="{{flag==0&&item.wx_id!=wx_id}}">
     <view   data-id='{{item.id}}'  data-path='/pages/order/detail/detail' data-names='id' bindtap='navTo'>
       <view class='panel-between'>
@@ -43,7 +43,6 @@
       <view class='bzBtn4 ma-l30' wx:if="{{item.state == 2 && wx_id == item.jd_id}}" data-id='{{item.id}}' bindtap='comfirm'>确认完成</view>
     </view>
   </view>
-
 
   <view class='titem' wx:for="{{list}}" wx:if="{{flag==1&&item.wx_id==wx_id}}">
     <view   data-id='{{item.id}}'  data-path='/pages/order/detail/detail' data-names='id' bindtap='navTo'>
@@ -98,8 +97,8 @@
       <view class='bzBtn4 ma-l30' wx:if="{{item.state == 2 && wx_id == item.jd_id}}" data-id='{{item.id}}' bindtap='comfirm'>确认完成</view>
     </view>
   </view>
-
 </view>
+
 
 <view class='text-center' wx:if="{{list.length == 0 && !load }}">
   <image src='/img/none.png' style='width:180rpx;height:180rpx'></image>

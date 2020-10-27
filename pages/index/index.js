@@ -6,8 +6,8 @@ Page({
   data: {
     imgurls:[],
     isFirst:true,
-    list:[
-    ],
+    list:[],
+    new_list:[],
     server:[]
   },
   navToArea(){
@@ -31,7 +31,7 @@ Page({
           wx.navigateTo({
             url: '/pages/daiqu/daiqu?index=' + index,
           })
-        } else if (name == '打印服务') {
+        } else if (name == '优选代取') {
           wx.navigateTo({
             url: '/pages/dayin/dayin?index=' + index,
           })
@@ -147,7 +147,8 @@ Page({
       uid: id
     }, function (res) {
       if (res.code == 1) {
-        wx.setStorageSync("server", res.data)
+    
+       wx.setStorageSync("server", res.data)
         _this.setData({list:res.data})
       
       } else {

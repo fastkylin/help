@@ -18,8 +18,6 @@ Page({
     fields:"helplist.*,wxuser.phone,wxuser.dphone,wxuser.avatar_url,wxuser.nick_name",
     wx_id:wx.getStorageSync("user").id,
     jd_id:-1
-
-
   },
   getWxsmData(){
     let date = new Date()
@@ -91,8 +89,6 @@ Page({
         }
       })
     }
-    
-    
   },
   takeDo(msg){
     wx.showLoading({
@@ -161,7 +157,6 @@ Page({
         }
       }
     })
-    
   },
   changeTag(e) {
     let index = e.currentTarget.dataset.index
@@ -250,18 +245,13 @@ Page({
         this.changeTag({ currentTarget: { dataset: { index: 0 } } })
       }
     }
-
   },
-
-  
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
     _this.getList(0)
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */
@@ -270,7 +260,6 @@ Page({
       _this.getList(0)
     }
   },
-
   /**
    * 用户点击右上角分享
    */

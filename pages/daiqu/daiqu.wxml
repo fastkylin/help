@@ -33,13 +33,14 @@
           <view class='fo-30'>取货短信</view>
           <input class='fo-30 text-right input' name='des' bindtap='desCheck' placeholder="请将取货短信粘贴到此"></input>
         </view>
+        <view class='pa-t30 panel-between item-center border-b pa-b20'>
+          <view class='fo-30'>收件人姓名</view>
+          <input class='fo-30 text-right input' name='name' bindtap='nameInput' placeholder="填写快递上的收件人姓名"></input>
+        </view>
 <view class='pa-l30 pa-r30 fo-28 fo-g text-center'>声明:若快递类型与实际不符，收货时需补差价</view>
       </view>
      <!--
-
-
     <view class='fo-26 text-center fo-g'>{{msg.des}}</view> 
-  
   -->
       <view class='fo-26 text-center ma-t30 '>需支付</view>
       <view class='text-center fo-40 bold ma-t20 fo-m'>{{kdtype[flag].price}}

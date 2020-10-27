@@ -5,14 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    kdtype: [{ la: '小件', price: 1 }, { la: '中件', price: 2 }, { la: '大件', price: 3 }],
-    flag:0,
-    address:'',
+    kdtype: [{
+      la: '小件',
+      price: 1
+    }, {
+      la: '中件',
+      price: 2
+    }, {
+      la: '大件',
+      price: 3
+    }],
+    flag: 0,
+    address: '',
+    name: ''
   },
   navTo(e) {
     app.com.navTo(e)
   },
-  change(e){
+  change(e) {
     this.setData({
       flag: e.currentTarget.dataset.index
     })
@@ -28,65 +38,75 @@ Page({
     this.data.kdtype[2].price = p[2]
     this.setData({
       msg: wx.getStorageSync("server")[options.index],
-      kdtype:this.data.kdtype
+      kdtype: this.data.kdtype
     })
-    if(wx.getStorageSync("address")){
+    if (wx.getStorageSync("address")) {
       let add = wx.getStorageSync("address")
       this.setData({
-        address: add.address + '-'+add.detail
+        address: add.address + '-' + add.detail
       })
     }
   },
-  desCheck:function(e){
-      this.setData({des:e.detail.value})
+  desCheck: function (e) {
+    this.setData({
+      des: e.detail.value
+    })
   },
-
-  formSubmit(e){
+  nameInput(e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  formSubmit(e) {
     let formId = e.detail.formId
-  
-    if(this.data.address == ''){
+    if (this.data.address == '') {
       wx.showToast({
         title: '请选择地址',
-        icon:'none'
+        icon: 'none'
       })
-    }else{
-        if (e.detail.value.des==''){
-      wx.showToast({
-        title: '取货短信必填',
-        icon:'none'
-      })
+    } else {
+      if (e.detail.value.des == '') {
+        wx.showToast({
+          title: '取货短信必填',
+          icon: 'none'
+        })
+      } else if (e.detail.value.name == '') {
+        wx.showToast({
+          title: '取货姓名必填',
+          icon: 'none'
+        })
+      } else {
+        wx.showLoading({
+          title: '发布中',
+          mask: true
+        })
+        app.com.post('help/add', {
+          openid: wx.getStorageSync("user").openid,
+          wx_id: wx.getStorageSync("user").id,
+          mu: this.data.address,
+          a_id: wx.getStorageSync("area").pk_id,
+          form_id: formId,
+          help_name: e.detail.value.name,
+          title: '快递代取',
+          des: e.detail.value.des,
+          total_fee: this.data.kdtype[this.data.flag].price
+        }, function (res) {
+          if (res.code == 1) {
+            wx.showToast({
+              title: '发布成功',
+            })
+            _this.wxpay(res)
+          } else {
+            wx.showToast({
+              title: res.msg,
+              icon: 'none'
+            })
+          }
+        })
+      }
     }
-    else{
-      wx.showLoading({
-        title: '发布中',
-        mask:true
-      })
-      app.com.post('help/add',{
-        openid: wx.getStorageSync("user").openid, 
-        wx_id:wx.getStorageSync("user").id,
-        mu:this.data.address,
-        a_id: wx.getStorageSync("area").pk_id,
-        form_id:formId,
-        title:'快递代取',
-       // des:this.data.kdtype[this.data.flag].la+' '+e.detail.value.des,
-           des:e.detail.value.des,
-        total_fee: this.data.kdtype[this.data.flag].price
-      },function(res){
-        if(res.code == 1){
-          wx.showToast({
-            title: '发布成功',
-          })
-          _this.wxpay(res)
-        }else{
-          wx.showToast({
-            title: res.msg,
-            icon:'none'
-          })
-        }
-      })
-    }}
   },
-  wxpay(msg){
+  wxpay(msg) {
     app.com.wxpay(msg)
   },
   /**
